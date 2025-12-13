@@ -42,16 +42,32 @@ const breadcrumbItems = computed<BreadcrumbItem[]>(() => {
   const items: BreadcrumbItem[] = []
   const matched = route.matched
 
-  // 添加首页
-  items.push({
-    title: '首页',
-    path: '/',
-    clickable: true,
-  })
+  // 如果只有一个匹配的路由（通常是当前页面），直接显示当前页面
+  if (matched.length <= 1) {
+    const currentMatch = matched[0]
+    if (currentMatch?.meta?.title) {
+      const iconMap: Record<string, any> = {
+        HomeFilled,
+        InfoFilled,
+        DataLine,
+        Plus,
+        Calendar,
+        User,
+      }
 
-  // 添加匹配的路由
+      items.push({
+        title: currentMatch.meta.title as string,
+        path: currentMatch.path,
+        icon: iconMap[currentMatch.meta.icon as string],
+        clickable: false, // 当前页面不点击
+      })
+    }
+    return items
+  }
+
+  // 如果有多个匹配的路由，从直接父级开始显示
   matched.forEach((match, index) => {
-    if (match.meta?.title && match.path !== '/') {
+    if (match.meta?.title) {
       // 查找对应的图标组件
       const iconMap: Record<string, any> = {
         HomeFilled,
@@ -60,6 +76,11 @@ const breadcrumbItems = computed<BreadcrumbItem[]>(() => {
         Plus,
         Calendar,
         User,
+      }
+
+      // 如果是首页且不是唯一的路由，跳过首页
+      if (match.path === '/' && matched.length > 1) {
+        return
       }
 
       items.push({
