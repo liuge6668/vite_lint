@@ -1,21 +1,91 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login/index.vue'),
+    meta: {
+      layout: false, // 不使用layout
+    },
+  },
+  {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/Home/index.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '首页',
+      icon: 'HomeFilled',
+      // menu 默认为 true，显示在菜单中
+    },
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/About.vue'),
+    component: () => import('@/views/About/index.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '关于',
+      icon: 'InfoFilled',
+      // menu 默认为 true，显示在菜单中
+    },
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('@/views/Dashboard/index.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '仪表板',
+      icon: 'DataLine',
+      roles: ['admin'], // 只有admin用户可见
+      // menu 默认为 true，显示在菜单中
+    },
+  },
+  {
+    path: '/calculator',
+    name: 'Calculator',
+    component: () => import('@/views/Calculator.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '计算器',
+      icon: 'Plus',
+      tools: true, // 显示在工具栏中（语义化：tools true表示在工具栏）
+    },
+  },
+  {
+    path: '/calendar',
+    name: 'Calendar',
+    component: () => import('@/views/Calendar.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '日历',
+      icon: 'Calendar',
+      tools: true, // 显示在工具栏中（语义化：tools true表示在工具栏）
+    },
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('@/views/Profile.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '个人资料',
+      icon: 'User',
+      menu: false, // 不显示在菜单中，但显示在layout中
+    },
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/views/NotFound.vue'),
+    component: () => import('@/views/NotFound/index.vue'),
+    meta: {
+      layout: false,
+      hidden: true,
+    },
   },
 ]
 
@@ -23,5 +93,32 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+
+  // 检查是否需要登录
+  if (to.meta?.requiresAuth && !userStore.isLoggedIn) {
+    next('/login')
+  } else if (to.path === '/login' && userStore.isLoggedIn) {
+    // 已登录用户访问登录页，跳转到首页
+    next('/')
+  } else if (to.meta?.roles && userStore.isLoggedIn) {
+    // 检查角色权限
+    const allowedRoles = to.meta.roles as string[]
+    if (!allowedRoles.includes(userStore.user!.role)) {
+      // 无权限访问，跳转到首页或显示错误页面
+      next('/')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+// 动态导入useUserStore以避免循环依赖
+import { useUserStore } from '@/stores/user'
 
 export default router

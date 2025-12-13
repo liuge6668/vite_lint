@@ -13,12 +13,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import type { User } from '@/stores/user'
+
 import { useCounterStore } from '@/stores/counter'
 import request from '@/utils/request'
 
 const counter = useCounterStore()
 const { count, increment } = counter
-const userInfo = ref(null)
+const userInfo = ref<User | null>(null)
 
 const fetchUserInfo = async () => {
   try {

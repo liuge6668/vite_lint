@@ -1,6 +1,7 @@
 import axios from 'axios'
-import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
+
+import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
 
 const service: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API || '/api',
@@ -10,8 +11,11 @@ const service: AxiosInstance = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 在这里可以添加 token 等
-    // config.headers.Authorization = `Bearer ${token}`
+    // 添加 token
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config
   },
   (error) => {

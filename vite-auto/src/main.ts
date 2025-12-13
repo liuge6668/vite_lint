@@ -3,9 +3,10 @@ import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import 'element-plus/dist/index.css'
+import './assets/css/themes.css'
+import './assets/css/global.css'
 import App from './App.vue'
 import router from './router'
-import './mock'
 
 const app = createApp(App)
 

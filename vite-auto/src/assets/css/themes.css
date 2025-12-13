@@ -1,0 +1,152 @@
+/* 基础主题变量 */
+:root {
+  /* 亮色主题 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #f0f0f0;
+  --text-primary: #303133;
+  --text-secondary: #606266;
+  --text-muted: #909399;
+  --border-color: #dcdfe6;
+  --border-light: #e4e7ed;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --primary-color: #409eff;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+  --info-color: #909399;
+
+  /* 侧边栏 */
+  --sidebar-bg: #304156;
+  --sidebar-text: #bfcbd9;
+  --sidebar-active: #409eff;
+
+  /* 卡片 */
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 暗色主题 */
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #262626;
+  --bg-tertiary: #333333;
+  --text-primary: #e5eaf3;
+  --text-secondary: #a3a6ad;
+  --text-muted: #8b949e;
+  --border-color: #434343;
+  --border-light: #595959;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --primary-color: #409eff;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+  --info-color: #909399;
+
+  /* 侧边栏 - 更深的颜色 */
+  --sidebar-bg: #141414;
+  --sidebar-text: #a3a6ad;
+  --sidebar-active: #409eff;
+
+  /* 卡片 */
+  --card-bg: #262626;
+  --card-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 应用主题变量到Element Plus组件 */
+[data-theme="dark"] .el-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .el-card__header {
+  background-color: var(--bg-tertiary);
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .el-card__body {
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .el-button {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .el-button--primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .el-input__inner {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .el-input__inner::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .el-form-item__label {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .el-menu {
+  background-color: var(--sidebar-bg);
+}
+
+[data-theme="dark"] .el-menu-item {
+  color: var(--sidebar-text);
+}
+
+[data-theme="dark"] .el-menu-item.is-active {
+  background-color: var(--sidebar-active);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .el-timeline-item__content {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .el-timeline-item__timestamp {
+  color: var(--text-muted);
+}
+
+/* 全局背景和文字颜色 */
+[data-theme="dark"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .layout-main {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .layout-header {
+  background-color: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+}
+
+/* 登录页面 */
+[data-theme="dark"] .login-container {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .login-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .login-title {
+  color: var(--text-primary);
+}
+
+/* 仪表板 */
+[data-theme="dark"] .dashboard {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .statistic-number {
+  color: var(--primary-color);
+}
