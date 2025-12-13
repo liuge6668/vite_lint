@@ -9,8 +9,10 @@ A modern Vue 3 + TypeScript admin system built with Vite, featuring multiple lay
 - **Element Plus** UI components with custom themes
 - **Multiple Layout Modes**:
   - **Mix Layout**: Classic sidebar + header layout
-  - **Side Layout**: Full-height sidebar with bottom toolbar
+  - **Side Layout**: Full-height sidebar with bottom toolbar (hover menu when collapsed)
   - **Top Layout**: Horizontal menu bar layout
+- **Collapsible Sidebar**: Smooth expand/collapse with debouncing and synchronized animations
+- **Breadcrumb Navigation**: Auto-generated breadcrumbs based on route hierarchy
 - **Theme Switching**: Light/Dark theme support
 - **Responsive Design**: Mobile-friendly layouts
 
@@ -83,9 +85,11 @@ A modern Vue 3 + TypeScript admin system built with Vite, featuring multiple lay
 - Settings are automatically saved to localStorage
 
 #### Navigation
+- **Breadcrumb**: Auto-generated navigation showing current location
 - **Home**: Main dashboard with statistics
 - **About**: Information page
 - **Dashboard**: Admin-only page with detailed analytics
+- **Tools**: Calculator and Calendar utilities (in sidebar submenu)
 
 ### Available Scripts
 
@@ -195,6 +199,7 @@ src/
 ├── api/             # API service functions
 │   └── user.ts      # User-related API calls
 ├── components/      # Reusable components
+│   ├── Breadcrumb/  # Auto-generated breadcrumb navigation
 │   ├── Logo/        # Random logo component
 │   ├── LayoutToggle/# Layout mode switcher
 │   └── ThemeToggle/ # Theme switcher
@@ -284,22 +289,69 @@ src/
 ### Authentication
 ```typescript
 POST /api/auth/login
+Content-Type: application/json
+
 {
-  "username": "admin",
-  "password": "123456"
+  "username": "admin",    // or any username for user role
+  "password": "123456"    // universal demo password
+}
+
+// Response
+{
+  "code": 200,
+  "message": "登录成功",
+  "data": {
+    "user": {
+      "id": 1,
+      "name": "admin",
+      "email": "admin@example.com",
+      "role": "admin"  // "admin" or "user"
+    },
+    "token": "mock-token-1234567890"
+  }
 }
 ```
 
 ### Dashboard Data
 ```typescript
 GET /api/dashboard/stats
-// Returns user count, order count, sales amount, and activity logs
+Authorization: Bearer <token>
+
+// Response
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "userCount": 1234,
+    "orderCount": 5678,
+    "salesAmount": 98765,
+    "activeUsers": 432,
+    "activities": [
+      {
+        "timestamp": "2023-10-01 10:00",
+        "content": "用户张三登录系统"
+      }
+    ]
+  }
+}
 ```
 
 ### User Info
 ```typescript
 GET /api/user/info
-// Returns current user information
+Authorization: Bearer <token>
+
+// Response
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "name": "admin",
+    "email": "admin@example.com",
+    "role": "admin"
+  }
+}
 ```
 
 ## 🎨 Customization
