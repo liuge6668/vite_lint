@@ -46,6 +46,50 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/product-planning',
+    name: 'ProductPlanning',
+    component: () => import('@/views/ProductPlanning/index.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '产品规划',
+      icon: 'DocumentAdd',
+      menu: false, // 不显示在菜单中
+    },
+    children: [
+      {
+        path: 'step1',
+        name: 'ProductPlanningStep1',
+        component: () => import('@/views/ProductPlanning/Step1.vue'),
+        meta: {
+          title: '步骤一：市场调研',
+          menu: false,
+        },
+      },
+      {
+        path: 'step2',
+        name: 'ProductPlanningStep2',
+        component: () => import('@/views/ProductPlanning/Step2.vue'),
+        meta: {
+          title: '步骤二：需求分析',
+          menu: false,
+        },
+      },
+      {
+        path: 'step3',
+        name: 'ProductPlanningStep3',
+        component: () => import('@/views/ProductPlanning/Step3.vue'),
+        meta: {
+          title: '步骤三：规划制定',
+          menu: false,
+        },
+      },
+      {
+        path: '',
+        redirect: '/product-planning/step1',
+      },
+    ],
+  },
+  {
     path: '/calculator',
     name: 'Calculator',
     component: () => import('@/views/Calculator.vue'),

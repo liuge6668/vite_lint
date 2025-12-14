@@ -431,6 +431,7 @@ onMounted(() => {
 .header-right {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .el-dropdown-link {
@@ -504,14 +505,14 @@ onMounted(() => {
   border-top: 1px solid var(--border-color);
   background-color: var(--sidebar-bg);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
 }
 
 .sidebar-footer.collapsed {
   padding: 8px;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .sidebar-footer-hover {
@@ -529,6 +530,12 @@ onMounted(() => {
 
 .sidebar-user-footer:hover {
   background-color: var(--bg-tertiary);
+}
+
+.sidebar-footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Top布局样式 */

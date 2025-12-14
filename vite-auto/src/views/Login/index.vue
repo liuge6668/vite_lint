@@ -37,7 +37,7 @@ import { useRouter } from 'vue-router'
 
 import type { FormInstance } from 'element-plus'
 
-import { login } from '@/api/user'
+import { login } from '@/service/auth/service'
 import { useUserStore } from '@/stores/user'
 
 const router = useRouter()

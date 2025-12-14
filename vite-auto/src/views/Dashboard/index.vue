@@ -57,9 +57,9 @@
 import { ElMessage } from 'element-plus'
 import { ref, onMounted } from 'vue'
 
-import type { DashboardData } from '@/api/user'
+import type { DashboardData } from '@/service/dashboard/types'
 
-import { getDashboardData } from '@/api/user'
+import { getDashboardData } from '@/service/dashboard/service'
 
 const loading = ref(false)
 const dashboardData = ref<DashboardData>({
