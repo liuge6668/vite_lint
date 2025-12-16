@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { HomeFilled, InfoFilled, DataLine, Plus, Calendar, User } from '@element-plus/icons-vue'
+import { HomeFilled, InfoFilled, DataLine, Plus, Calendar, User, EditPen, Grid, Edit, MessageBox, ArrowDown, Check } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
@@ -76,6 +76,12 @@ const breadcrumbItems = computed<BreadcrumbItem[]>(() => {
         Plus,
         Calendar,
         User,
+        EditPen,
+        Grid,
+        Edit,
+        MessageBox,
+        ArrowDown,
+        Check,
       }
 
       // 如果是首页且不是唯一的路由，跳过首页

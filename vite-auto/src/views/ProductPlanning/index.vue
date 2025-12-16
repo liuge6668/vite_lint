@@ -3,9 +3,14 @@
     <div class="main-content">
       <h1>产品规划</h1>
       <el-steps :active="activeStep" finish-status="success">
-        <el-step title="步骤一" description="市场调研" @click="goToStep(0)"></el-step>
-        <el-step title="步骤二" description="需求分析" @click="goToStep(1)"></el-step>
-        <el-step title="步骤三" description="规划制定" @click="goToStep(2)"></el-step>
+        <el-step
+          v-for="(step, index) in steps"
+          :key="index"
+          :title="step.title"
+          :description="step.description"
+          :status="getStepStatus(index)"
+          @click="goToStep(index)"
+        ></el-step>
       </el-steps>
       <div class="step-content">
         <router-view />
@@ -17,8 +22,8 @@
       </div>
       <div class="footer-right">
         <el-button v-if="activeStep > 0" @click="prevStep">上一步</el-button>
-        <el-button v-if="activeStep < 2" type="primary" @click="nextStep">下一步</el-button>
-        <el-button v-if="activeStep === 2" type="success">完成</el-button>
+        <el-button v-if="activeStep < totalSteps - 1" type="primary" @click="nextStep">下一步</el-button>
+        <el-button v-if="activeStep === totalSteps - 1" type="success">完成</el-button>
       </div>
     </div>
   </div>
@@ -35,12 +40,33 @@ const activeStep = ref(0)
 
 const stepRoutes = ['step1', 'step2', 'step3']
 
+const steps = [
+  { title: '步骤一', description: '市场调研' },
+  { title: '步骤二', description: '需求分析' },
+  { title: '步骤三', description: '规划制定' },
+]
+
+const totalSteps = steps.length
+
 // 根据当前路由设置activeStep
 const updateActiveStep = () => {
   const currentPath = route.path.split('/').pop()
   const index = stepRoutes.indexOf(currentPath || '')
   if (index !== -1) {
     activeStep.value = index
+  }
+}
+
+// 监听路由变化，更新activeStep
+watch(() => route.path, updateActiveStep, { immediate: true })
+
+const getStepStatus = (index: number) => {
+  if (index < activeStep.value) {
+    return 'finish'
+  } else if (index === activeStep.value) {
+    return 'process'
+  } else {
+    return 'wait'
   }
 }
 
@@ -51,7 +77,7 @@ const goToStep = (step: number) => {
 }
 
 const nextStep = () => {
-  if (activeStep.value < 2) {
+  if (activeStep.value < totalSteps - 1) {
     goToStep(activeStep.value + 1)
   }
 }

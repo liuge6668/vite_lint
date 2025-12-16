@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouterView } from 'vue-router'
+import { defineComponent } from 'vue'
 
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -52,8 +53,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       requiresAuth: true,
       title: '产品规划',
-      icon: 'DocumentAdd',
-      menu: false, // 不显示在菜单中
+      icon: 'EditPen',
     },
     children: [
       {
@@ -62,7 +62,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/ProductPlanning/Step1.vue'),
         meta: {
           title: '步骤一：市场调研',
-          menu: false,
         },
       },
       {
@@ -71,7 +70,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/ProductPlanning/Step2.vue'),
         meta: {
           title: '步骤二：需求分析',
-          menu: false,
         },
       },
       {
@@ -80,7 +78,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/ProductPlanning/Step3.vue'),
         meta: {
           title: '步骤三：规划制定',
-          menu: false,
         },
       },
       {
@@ -90,26 +87,104 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/calculator',
-    name: 'Calculator',
-    component: () => import('@/views/Calculator.vue'),
+    path: '/components-showcase',
+    name: 'ComponentsShowcase',
+    component: defineComponent({
+      render() {
+        return h(RouterView)
+      }
+    }),
+    redirect: '/components-showcase/button',
     meta: {
       requiresAuth: true,
-      title: '计算器',
-      icon: 'Plus',
-      tools: true, // 显示在工具栏中（语义化：tools true表示在工具栏）
+      title: '组件展示',
+      icon: 'Grid',
     },
+    children: [
+      {
+        path: 'button',
+        name: 'ButtonShowcase',
+        component: () => import('@/views/ComponentsShowcase/Button.vue'),
+        meta: {
+          title: 'Button 按钮',
+        },
+      },
+      {
+        path: 'input',
+        name: 'InputShowcase',
+        component: () => import('@/views/ComponentsShowcase/Input.vue'),
+        meta: {
+          title: 'Input 输入框',
+        },
+      },
+      {
+        path: 'table',
+        name: 'TableShowcase',
+        component: () => import('@/views/ComponentsShowcase/Table.vue'),
+        meta: {
+          title: 'Table 表格',
+        },
+      },
+      {
+        path: 'dialog',
+        name: 'DialogShowcase',
+        component: () => import('@/views/ComponentsShowcase/Dialog.vue'),
+        meta: {
+          title: 'Dialog 对话框',
+        },
+      },
+      {
+        path: 'select',
+        name: 'SelectShowcase',
+        component: () => import('@/views/ComponentsShowcase/Select.vue'),
+        meta: {
+          title: 'Select 选择器',
+        },
+      },
+      {
+        path: 'switch',
+        name: 'SwitchShowcase',
+        component: () => import('@/views/ComponentsShowcase/Switch.vue'),
+        meta: {
+          title: 'Switch 开关',
+        },
+      },
+    ],
   },
   {
-    path: '/calendar',
-    name: 'Calendar',
-    component: () => import('@/views/Calendar.vue'),
+    path: '/tools',
+    name: 'Tools',
+    component: defineComponent({
+      render() {
+        return h(RouterView)
+      }
+    }),
+    redirect: '/tools/calculator',
     meta: {
       requiresAuth: true,
-      title: '日历',
-      icon: 'Calendar',
-      tools: true, // 显示在工具栏中（语义化：tools true表示在工具栏）
+      title: '工具',
+      icon: 'Tools',
     },
+    children: [
+      {
+        path: 'calculator',
+        name: 'Calculator',
+        component: () => import('@/views/Calculator.vue'),
+        meta: {
+          title: '计算器',
+          icon: 'Plus',
+        },
+      },
+      {
+        path: 'calendar',
+        name: 'Calendar',
+        component: () => import('@/views/Calendar.vue'),
+        meta: {
+          title: '日历',
+          icon: 'Calendar',
+        },
+      },
+    ],
   },
   {
     path: '/profile',
@@ -164,5 +239,6 @@ router.beforeEach((to, from, next) => {
 
 // 动态导入useUserStore以避免循环依赖
 import { useUserStore } from '@/stores/user'
+import { h } from 'vue'
 
 export default router
