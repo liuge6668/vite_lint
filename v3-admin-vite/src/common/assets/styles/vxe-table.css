@@ -12,21 +12,18 @@
   --vxe-info-color: var(--el-color-info);
   --vxe-warning-color: var(--el-color-warning);
   --vxe-danger-color: var(--el-color-danger);
-
   --vxe-font-lighten-color: var(--el-text-color-primary);
   --vxe-primary-lighten-color: var(--el-color-primary-light-3);
   --vxe-success-lighten-color: var(--el-color-success-light-3);
   --vxe-info-lighten-color: var(--el-color-info-light-3);
   --vxe-warning-lighten-color: var(--el-color-warning-light-3);
   --vxe-danger-lighten-color: var(--el-color-danger-light-3);
-
   --vxe-font-darken-color: var(--el-text-color-secondary);
   --vxe-primary-darken-color: var(--el-color-primary-dark-2);
   --vxe-success-darken-color: var(--el-color-success-dark-2);
   --vxe-info-darken-color: var(--el-color-info-dark-2);
   --vxe-warning-darken-color: var(--el-color-warning-dark-2);
   --vxe-danger-darken-color: var(--el-color-danger-dark-2);
-
   --vxe-font-disabled-color: var(--el-text-color-disabled);
   --vxe-primary-disabled-color: var(--el-color-primary-light-5);
   --vxe-success-disabled-color: var(--el-color-success-light-5);
@@ -50,11 +47,9 @@
   --vxe-table-header-background-color: var(--el-bg-color);
   --vxe-table-body-background-color: var(--el-bg-color);
   --vxe-table-footer-background-color: var(--el-bg-color);
-
   --vxe-table-row-hover-background-color: var(--el-fill-color-light);
   --vxe-table-row-current-background-color: var(--el-fill-color-light);
   --vxe-table-row-hover-current-background-color: var(--el-fill-color-light);
-
   --vxe-table-checkbox-range-background-color: var(--el-fill-color-light);
 
   /* menu */

@@ -59,9 +59,16 @@ function resetLayoutsConfig() {
     <SelectLayoutMode />
     <el-divider />
     <h4>功能配置</h4>
-    <div v-for="(settingValue, settingName, index) in switchSettings" :key="index" class="setting-item">
+    <div
+      v-for="(settingValue, settingName, index) in switchSettings"
+      :key="index"
+      class="setting-item"
+    >
       <span class="setting-name">{{ settingName }}</span>
-      <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
+      <el-switch
+        v-model="settingValue.value"
+        :disabled="!isLeft && settingName === '固定 Header'"
+      />
     </div>
     <el-button type="danger" :icon="Refresh" @click="resetLayoutsConfig">
       重 置
@@ -70,10 +77,11 @@ function resetLayoutsConfig() {
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins";
 
 .setting-container {
   padding: 20px;
+
   .setting-item {
     font-size: 14px;
     color: var(--el-text-color-regular);
@@ -81,10 +89,12 @@ function resetLayoutsConfig() {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .setting-name {
       @extend %ellipsis;
     }
   }
+
   .el-button {
     margin-top: 40px;
     width: 100%;

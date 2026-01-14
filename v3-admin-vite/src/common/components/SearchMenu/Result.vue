@@ -81,13 +81,17 @@ defineExpose({ getScrollTop })
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>
-      <SvgIcon v-if="modelValue && modelValue === item.name" name="keyboard-enter" class="svg-icon" />
+      <SvgIcon
+        v-if="modelValue && modelValue === item.name"
+        name="keyboard-enter"
+        class="svg-icon"
+      />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins";
 
 .result-item {
   display: flex;
@@ -98,17 +102,21 @@ defineExpose({ getScrollTop })
   border: 1px solid var(--el-border-color);
   border-radius: 4px;
   cursor: pointer;
+
   .svg-icon {
     min-width: 1em;
     font-size: 18px;
   }
+
   .el-icon {
     width: 1em;
     font-size: 18px;
   }
+
   &-title {
     flex: 1;
     margin-left: 12px;
+
     @extend %ellipsis;
   }
 }

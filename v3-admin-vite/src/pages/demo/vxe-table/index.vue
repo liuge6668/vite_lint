@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import type { TableResponseData } from "@@/apis/tables/type"
 import type { ElMessageBoxOptions } from "element-plus"
-import type { VxeFormInstance, VxeFormProps, VxeGridInstance, VxeGridProps, VxeModalInstance, VxeModalProps } from "vxe-table"
+import type {
+  VxeFormInstance,
+  VxeFormProps,
+  VxeGridInstance,
+  VxeGridProps,
+  VxeModalInstance,
+  VxeModalProps
+} from "vxe-table"
 import { deleteTableDataApi, getTableDataApi } from "@@/apis/tables"
 
 defineOptions({
@@ -410,19 +417,13 @@ const crudStore = reactive({
       </template>
       <!-- 角色列 -->
       <template #role-column="{ row, column }">
-        <el-tag
-          :type="row[column.field] === 'admin' ? 'primary' : 'warning'"
-          effect="plain"
-        >
+        <el-tag :type="row[column.field] === 'admin' ? 'primary' : 'warning'" effect="plain">
           {{ row[column.field] }}
         </el-tag>
       </template>
       <!-- 状态列 -->
       <template #status-column="{ row, column }">
-        <el-tag
-          :type="row[column.field] ? 'success' : 'danger'"
-          effect="plain"
-        >
+        <el-tag :type="row[column.field] ? 'success' : 'danger'" effect="plain">
           {{ row[column.field] ? "启用" : "禁用" }}
         </el-tag>
       </template>

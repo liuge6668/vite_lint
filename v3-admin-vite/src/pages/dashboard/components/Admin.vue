@@ -15,6 +15,7 @@ import SvgDashboard from "../images/dashboard.svg?component" // vite-svg-loader 
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .svg {
     width: 600px;
     max-width: 100%;

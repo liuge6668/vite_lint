@@ -40,11 +40,15 @@ const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefi
 
 const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
 
-const sidebarMenuItemHeight = computed(() => !isTop.value ? "var(--v3-sidebar-menu-item-height)" : "var(--v3-navigationbar-height)")
+const sidebarMenuItemHeight = computed(() =>
+  !isTop.value ? "var(--v3-sidebar-menu-item-height)" : "var(--v3-navigationbar-height)"
+)
 
-const sidebarMenuHoverBgColor = computed(() => !isTop.value ? "var(--v3-sidebar-menu-hover-bg-color)" : "transparent")
+const sidebarMenuHoverBgColor = computed(() =>
+  !isTop.value ? "var(--v3-sidebar-menu-hover-bg-color)" : "transparent"
+)
 
-const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
+const tipLineWidth = computed(() => (!isTop.value ? "2px" : "0px"))
 </script>
 
 <template>
@@ -78,7 +82,7 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
     position: absolute;
     top: 0;
     left: 0;
-    width: v-bind(tipLineWidth);
+    width: v-bind(tiplinewidth);
     height: 100%;
     background-color: var(--v3-sidebar-menu-tip-line-bg-color);
   }
@@ -92,10 +96,12 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
 
 .el-scrollbar {
   height: 100%;
+
   :deep(.scrollbar-wrapper) {
     // 限制水平宽度
     overflow-x: hidden;
   }
+
   // 滚动条
   :deep(.el-scrollbar__bar) {
     &.is-horizontal {
@@ -112,25 +118,26 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
 }
 
 .el-menu--horizontal {
-  height: v-bind(sidebarMenuItemHeight);
+  height: v-bind(sidebarmenuitemheight);
 }
 
 :deep(.el-menu-item),
 :deep(.el-sub-menu__title),
 :deep(.el-sub-menu .el-menu-item),
 :deep(.el-menu--horizontal .el-menu-item) {
-  height: v-bind(sidebarMenuItemHeight);
-  line-height: v-bind(sidebarMenuItemHeight);
+  height: v-bind(sidebarmenuitemheight);
+  line-height: v-bind(sidebarmenuitemheight);
+
   &.is-active,
   &:hover {
-    background-color: v-bind(sidebarMenuHoverBgColor);
+    background-color: v-bind(sidebarmenuhoverbgcolor);
   }
 }
 
 :deep(.el-sub-menu) {
   &.is-active {
     > .el-sub-menu__title {
-      color: v-bind(activeTextColor);
+      color: v-bind(activetextcolor);
     }
   }
 }
@@ -143,7 +150,8 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
   :deep(.el-sub-menu.is-active) {
     .el-sub-menu__title {
       @extend %tip-line;
-      background-color: v-bind(sidebarMenuHoverBgColor);
+
+      background-color: v-bind(sidebarmenuhoverbgcolor);
     }
   }
 }

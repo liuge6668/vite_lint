@@ -38,11 +38,13 @@ const layoutClasses = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins";
+
 $transition-time: 0.35s;
 
 .app-wrapper {
   @extend %clearfix;
+
   width: 100%;
 }
 
@@ -52,10 +54,12 @@ $transition-time: 0.35s;
   z-index: 1002;
   width: 100%;
   display: flex;
+
   .logo {
     flex: none;
     width: var(--v3-sidebar-width);
   }
+
   .content {
     flex: 1;
     overflow: hidden;
@@ -97,6 +101,7 @@ $transition-time: 0.35s;
   .sidebar-container {
     width: var(--v3-sidebar-hide-width);
   }
+
   .app-main {
     padding-left: var(--v3-sidebar-hide-width);
   }
@@ -106,6 +111,7 @@ $transition-time: 0.35s;
   .sidebar-container {
     padding-top: var(--v3-header-height);
   }
+
   .app-main {
     padding-top: var(--v3-header-height);
   }

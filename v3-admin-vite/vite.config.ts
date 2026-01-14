@@ -49,11 +49,7 @@ export default defineConfig(({ mode }) => {
       cors: true,
       // 预热常用文件，提高初始页面加载速度
       warmup: {
-        clientFiles: [
-          "./src/layouts/**/*.*",
-          "./src/pinia/**/*.*",
-          "./src/router/**/*.*"
-        ]
+        clientFiles: ["./src/layouts/**/*.*", "./src/pinia/**/*.*", "./src/router/**/*.*"]
       }
     },
     // 构建配置
@@ -83,13 +79,13 @@ export default defineConfig(({ mode }) => {
       mode === "development"
         ? undefined
         : {
-            // 打包构建时移除 console.log
-            pure: ["console.log"],
-            // 打包构建时移除 debugger
-            drop: ["debugger"],
-            // 打包构建时移除所有注释
-            legalComments: "none"
-          },
+          // 打包构建时移除 console.log
+          pure: ["console.log"],
+          // 打包构建时移除 debugger
+          drop: ["debugger"],
+          // 打包构建时移除所有注释
+          legalComments: "none"
+        },
     // 依赖预构建
     optimizeDeps: {
       include: ["element-plus/es/components/*/style/css"]

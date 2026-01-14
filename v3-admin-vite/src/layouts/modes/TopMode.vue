@@ -26,11 +26,13 @@ const { showTagsView, showLogo } = storeToRefs(settingsStore)
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins";
+
 $transition-time: 0.35s;
 
 .app-wrapper {
   @extend %clearfix;
+
   width: 100%;
 }
 
@@ -39,11 +41,14 @@ $transition-time: 0.35s;
   top: 0;
   z-index: 1002;
   width: 100%;
+
   .logo {
     width: var(--v3-sidebar-width);
   }
+
   .content {
     display: flex;
+
     .navigation-bar {
       flex: 1;
     }

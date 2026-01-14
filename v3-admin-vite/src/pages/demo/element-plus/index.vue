@@ -1,9 +1,21 @@
 <script lang="ts" setup>
 import type { CreateOrUpdateTableRequestData, TableData } from "@@/apis/tables/type"
 import type { FormRules } from "element-plus"
-import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@@/apis/tables"
+import {
+  createTableDataApi,
+  deleteTableDataApi,
+  getTableDataApi,
+  updateTableDataApi
+} from "@@/apis/tables"
 import { usePagination } from "@@/composables/usePagination"
-import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
+import {
+  CirclePlus,
+  Delete,
+  Download,
+  Refresh,
+  RefreshRight,
+  Search
+} from "@element-plus/icons-vue"
 import { cloneDeep } from "lodash-es"
 
 defineOptions({
@@ -41,13 +53,15 @@ function handleCreateOrUpdate() {
     }
     loading.value = true
     const api = formData.value.id === undefined ? createTableDataApi : updateTableDataApi
-    api(formData.value).then(() => {
-      ElMessage.success("操作成功")
-      dialogVisible.value = false
-      getTableData()
-    }).finally(() => {
-      loading.value = false
-    })
+    api(formData.value)
+      .then(() => {
+        ElMessage.success("操作成功")
+        dialogVisible.value = false
+        getTableData()
+      })
+      .finally(() => {
+        loading.value = false
+      })
   })
 }
 
@@ -96,14 +110,17 @@ function getTableData() {
     size: paginationData.pageSize,
     username: searchData.username,
     phone: searchData.phone
-  }).then(({ data }) => {
-    paginationData.total = data.total
-    tableData.value = data.list
-  }).catch(() => {
-    tableData.value = []
-  }).finally(() => {
-    loading.value = false
   })
+    .then(({ data }) => {
+      paginationData.total = data.total
+      tableData.value = data.list
+    })
+    .catch(() => {
+      tableData.value = []
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 
 function handleSearch() {
@@ -117,7 +134,9 @@ function resetSearch() {
 // #endregion
 
 // 监听分页参数的变化
-watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
+watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, {
+  immediate: true
+})
 </script>
 
 <template>
@@ -171,7 +190,12 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-table-column prop="username" label="用户名" align="center" />
           <el-table-column prop="roles" label="角色" align="center">
             <template #default="scope">
-              <el-tag v-if="scope.row.roles === 'admin'" type="primary" effect="plain" disable-transitions>
+              <el-tag
+                v-if="scope.row.roles === 'admin'"
+                type="primary"
+                effect="plain"
+                disable-transitions
+              >
                 admin
               </el-tag>
               <el-tag v-else type="warning" effect="plain" disable-transitions>
@@ -224,7 +248,13 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
       width="30%"
       @closed="resetForm"
     >
-      <el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="left">
+      <el-form
+        ref="formRef"
+        :model="formData"
+        :rules="formRules"
+        label-width="100px"
+        label-position="left"
+      >
         <el-form-item prop="username" label="用户名">
           <el-input v-model="formData.username" placeholder="请输入" />
         </el-form-item>
@@ -251,6 +281,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
 
 .search-wrapper {
   margin-bottom: 20px;
+
   :deep(.el-card__body) {
     padding-bottom: 2px;
   }

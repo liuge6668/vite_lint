@@ -39,7 +39,16 @@ VXETable.setConfig({
     pageSize: 10,
     pagerCount: 7,
     pageSizes: [10, 20, 50],
-    layouts: ["Total", "PrevJump", "PrevPage", "Number", "NextPage", "NextJump", "Sizes", "FullJump"]
+    layouts: [
+      "Total",
+      "PrevJump",
+      "PrevPage",
+      "Number",
+      "NextPage",
+      "NextJump",
+      "Sizes",
+      "FullJump"
+    ]
   },
   modal: {
     minWidth: 500,

@@ -101,6 +101,9 @@ pnpm lint
 
 # Unit tests
 pnpm test
+
+# Pre-commit check (TypeScript, ESLint, Prettier, Stylelint, Tests)
+pnpm check
 ```
 
 </details>

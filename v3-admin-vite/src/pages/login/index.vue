@@ -37,16 +37,12 @@ const loginFormData: LoginRequestData = reactive({
 
 /** 登录表单校验规则 */
 const loginFormRules: FormRules = {
-  username: [
-    { required: true, message: "请输入用户名", trigger: "blur" }
-  ],
+  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [
     { required: true, message: "请输入密码", trigger: "blur" },
     { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
   ],
-  code: [
-    { required: true, message: "请输入验证码", trigger: "blur" }
-  ]
+  code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
 }
 
 /** 登录 */
@@ -57,15 +53,18 @@ function handleLogin() {
       return
     }
     loading.value = true
-    loginApi(loginFormData).then(({ data }) => {
-      userStore.setToken(data.token)
-      router.push(route.query.redirect ? decodeURIComponent(route.query.redirect as string) : "/")
-    }).catch(() => {
-      createCode()
-      loginFormData.password = ""
-    }).finally(() => {
-      loading.value = false
-    })
+    loginApi(loginFormData)
+      .then(({ data }) => {
+        userStore.setToken(data.token)
+        router.push(route.query.redirect ? decodeURIComponent(route.query.redirect as string) : "/")
+      })
+      .catch(() => {
+        createCode()
+        loginFormData.password = ""
+      })
+      .finally(() => {
+        loading.value = false
+      })
   })
 }
 
@@ -94,7 +93,12 @@ createCode()
         <img src="@@/assets/images/layouts/logo-text-2.png">
       </div>
       <div class="content">
-        <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
+        <el-form
+          ref="loginFormRef"
+          :model="loginFormData"
+          :rules="loginFormRules"
+          @keyup.enter="handleLogin"
+        >
           <el-form-item prop="username">
             <el-input
               v-model.trim="loginFormData.username"
@@ -163,12 +167,14 @@ createCode()
   align-items: center;
   width: 100%;
   min-height: 100%;
+
   .theme-switch {
     position: fixed;
     top: 5%;
     right: 5%;
     cursor: pointer;
   }
+
   .login-card {
     width: 480px;
     max-width: 90%;
@@ -176,29 +182,35 @@ createCode()
     box-shadow: 0 0 10px #dcdfe6;
     background-color: var(--el-bg-color);
     overflow: hidden;
+
     .title {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 150px;
+
       img {
         height: 100%;
       }
     }
+
     .content {
-      padding: 20px 50px 50px 50px;
+      padding: 20px 50px 50px;
+
       :deep(.el-input-group__append) {
         padding: 0;
         overflow: hidden;
+
         .el-image {
           width: 100px;
           height: 40px;
-          border-left: 0px;
+          border-left: 0;
           user-select: none;
           cursor: pointer;
           text-align: center;
         }
       }
+
       .el-button {
         width: 100%;
         margin-top: 10px;

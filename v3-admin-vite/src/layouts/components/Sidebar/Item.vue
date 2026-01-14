@@ -50,8 +50,16 @@ function resolvePath(routePath: string) {
   <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
     <Link v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
       <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
-        <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" class="svg-icon" />
-        <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
+        <SvgIcon
+          v-if="theOnlyOneChild.meta.svgIcon"
+          :name="theOnlyOneChild.meta.svgIcon"
+          class="svg-icon"
+        />
+        <component
+          v-else-if="theOnlyOneChild.meta.elIcon"
+          :is="theOnlyOneChild.meta.elIcon"
+          class="el-icon"
+        />
         <template v-if="theOnlyOneChild.meta.title" #title>
           <span class="title">{{ theOnlyOneChild.meta.title }}</span>
         </template>
@@ -76,7 +84,7 @@ function resolvePath(routePath: string) {
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins";
 
 .svg-icon {
   min-width: 1em;

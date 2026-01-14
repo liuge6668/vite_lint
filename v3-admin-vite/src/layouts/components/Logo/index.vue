@@ -34,9 +34,11 @@ const { isLeft, isTop } = useLayoutMode()
   line-height: var(--v3-header-height);
   text-align: center;
   overflow: hidden;
+
   .layout-logo {
     display: none;
   }
+
   .layout-logo-text {
     height: 100%;
     vertical-align: middle;
@@ -55,6 +57,7 @@ const { isLeft, isTop } = useLayoutMode()
     vertical-align: middle;
     display: inline-block;
   }
+
   .layout-logo-text {
     display: none;
   }

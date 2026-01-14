@@ -37,7 +37,11 @@ function promoteRouteLevel(route: RouteRecordRaw) {
 }
 
 /** 将给定的子路由添加到指定的路由模块中 */
-function addToChildren(routes: RouteRecordNormalized[], children: RouteRecordRaw[], routeModule: RouteRecordRaw) {
+function addToChildren(
+  routes: RouteRecordNormalized[],
+  children: RouteRecordRaw[],
+  routeModule: RouteRecordRaw
+) {
   children.forEach((child) => {
     const route = routes.find(item => item.name === child.name)
     if (route) {

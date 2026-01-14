@@ -3,13 +3,15 @@
  * @link https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
  * @link https://cn.vite.dev/guide/features#typescript-compiler-options
  */
-
 {
   "compilerOptions": {
     "target": "esnext",
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
     // baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项
@@ -18,11 +20,18 @@
     "moduleResolution": "bundler",
     // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算，与 vite.config 中 alias 配置同步
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/common/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@@/*": [
+        "src/common/*"
+      ]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "element-plus/global"],
+    "types": [
+      "vite/client",
+      "element-plus/global"
+    ],
     // 允许导入 .ts .mts .tsx 拓展名的文件
     "allowImportingTsExtensions": true,
     // 允许 JS
@@ -39,7 +48,15 @@
     "skipLibCheck": true
   },
   // 需要被编译的文件列表
-  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "**/*.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "**/*.d.ts"
+  ],
   // 从编译中排除的文件列表
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

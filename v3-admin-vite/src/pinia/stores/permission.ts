@@ -44,7 +44,9 @@ export const usePermissionStore = defineStore("permission", () => {
   // 统一设置
   const set = (accessedRoutes: RouteRecordRaw[]) => {
     routes.value = constantRoutes.concat(accessedRoutes)
-    addRoutes.value = routerConfig.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
+    addRoutes.value = routerConfig.thirdLevelRouteCache
+      ? flatMultiLevelRoutes(accessedRoutes)
+      : accessedRoutes
   }
 
   return { routes, addRoutes, setRoutes, setAllRoutes }

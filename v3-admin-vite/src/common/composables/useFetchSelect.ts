@@ -29,11 +29,13 @@ export function useFetchSelect(props: FetchSelectProps) {
   const loadData = () => {
     loading.value = true
     options.value = []
-    api().then((res) => {
-      options.value = res.data
-    }).finally(() => {
-      loading.value = false
-    })
+    api()
+      .then((res) => {
+        options.value = res.data
+      })
+      .finally(() => {
+        loading.value = false
+      })
   }
 
   onMounted(() => {

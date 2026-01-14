@@ -1,40 +1,53 @@
-import { isArray } from "@@/utils/validate"
-import { describe, expect, it } from "vitest"
+import { isArray, isString, isExternal } from '@@/utils/validate'
+import { describe, expect, test } from "vitest"
 
-describe("isArray", () => {
-  it("string", () => {
-    expect(isArray("")).toBe(false)
+
+describe('validate utils', () => {
+  describe('isArray', () => {
+    test('should return true for arrays', () => {
+      expect(isArray([])).toBe(true)
+      expect(isArray([1, 2, 3])).toBe(true)
+      expect(isArray(['a', 'b'])).toBe(true)
+    })
+
+    test('should return false for non-arrays', () => {
+      expect(isArray(null)).toBe(false)
+      expect(isArray(undefined)).toBe(false)
+      expect(isArray('string')).toBe(false)
+      expect(isArray(123)).toBe(false)
+      expect(isArray({})).toBe(false)
+    })
   })
 
-  it("number", () => {
-    expect(isArray(1)).toBe(false)
+  describe('isString', () => {
+    test('should return true for strings', () => {
+      expect(isString('')).toBe(true)
+      expect(isString('hello')).toBe(true)
+      expect(isString(new String('test'))).toBe(true)
+    })
+
+    test('should return false for non-strings', () => {
+      expect(isString(null)).toBe(false)
+      expect(isString(undefined)).toBe(false)
+      expect(isString(123)).toBe(false)
+      expect(isString([])).toBe(false)
+      expect(isString({})).toBe(false)
+    })
   })
 
-  it("boolean", () => {
-    expect(isArray(true)).toBe(false)
-  })
+  describe('isExternal', () => {
+    test('should return true for external links', () => {
+      expect(isExternal('https://example.com')).toBe(true)
+      expect(isExternal('http://example.com')).toBe(true)
+      expect(isExternal('mailto:test@example.com')).toBe(true)
+      expect(isExternal('tel:+1234567890')).toBe(true)
+    })
 
-  it("null", () => {
-    expect(isArray(null)).toBe(false)
-  })
-
-  it("undefined", () => {
-    expect(isArray(undefined)).toBe(false)
-  })
-
-  it("symbol", () => {
-    expect(isArray(Symbol())).toBe(false)
-  })
-
-  it("bigInt", () => {
-    expect(isArray(BigInt(1))).toBe(false)
-  })
-
-  it("object", () => {
-    expect(isArray({})).toBe(false)
-  })
-
-  it("array object", () => {
-    expect(isArray([])).toBe(true)
+    test('should return false for internal links', () => {
+      expect(isExternal('/path')).toBe(false)
+      expect(isExternal('relative/path')).toBe(false)
+      expect(isExternal('#anchor')).toBe(false)
+      expect(isExternal('ftp://example.com')).toBe(false)
+    })
   })
 })

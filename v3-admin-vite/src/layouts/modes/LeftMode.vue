@@ -35,7 +35,11 @@ function handleClickOutside() {
 <template>
   <div :class="layoutClasses" class="app-wrapper">
     <!-- mobile 端侧边栏遮罩层 -->
-    <div v-if="layoutClasses.mobile && layoutClasses.openSidebar" class="drawer-bg" @click="handleClickOutside" />
+    <div
+      v-if="layoutClasses.mobile && layoutClasses.openSidebar"
+      class="drawer-bg"
+      @click="handleClickOutside"
+    />
     <!-- 左侧边栏 -->
     <Sidebar class="sidebar-container" />
     <!-- 主容器 -->
@@ -52,17 +56,19 @@ function handleClickOutside() {
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins";
+
 $transition-time: 0.35s;
 
 .app-wrapper {
   @extend %clearfix;
+
   position: relative;
   width: 100%;
 }
 
 .drawer-bg {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0 0 0 / 30%);
   width: 100%;
   top: 0;
   height: 100%;
@@ -124,6 +130,7 @@ $transition-time: 0.35s;
   .app-main {
     min-height: calc(100vh - var(--v3-header-height));
   }
+
   .fixed-header + .app-main {
     padding-top: var(--v3-header-height);
   }
@@ -133,9 +140,11 @@ $transition-time: 0.35s;
   .sidebar-container {
     width: var(--v3-sidebar-hide-width);
   }
+
   .main-container {
     margin-left: var(--v3-sidebar-hide-width);
   }
+
   .fixed-header {
     width: calc(100% - var(--v3-sidebar-hide-width));
   }
@@ -147,16 +156,20 @@ $transition-time: 0.35s;
     transition: transform $transition-time;
     width: var(--v3-sidebar-width);
   }
+
   .main-container {
-    margin-left: 0px;
+    margin-left: 0;
   }
+
   .fixed-header {
     width: 100%;
   }
+
   &.openSidebar {
     position: fixed;
     top: 0;
   }
+
   &.hideSidebar {
     .sidebar-container {
       pointer-events: none;
@@ -164,6 +177,7 @@ $transition-time: 0.35s;
       transform: translate3d(calc(0px - var(--v3-sidebar-width)), 0, 0);
     }
   }
+
   // 既是 mobile 又是顶部或混合布局模式
   &.noLeft {
     .sidebar-container {

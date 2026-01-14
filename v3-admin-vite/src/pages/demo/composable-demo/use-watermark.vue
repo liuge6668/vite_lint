@@ -23,7 +23,10 @@ const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark }
           <el-button type="primary" @click="setWatermark('局部水印', { color: '#409eff' })">
             创建局部水印
           </el-button>
-          <el-button type="warning" @click="setWatermark('没有防御功能的局部水印', { color: '#e6a23c', defense: false })">
+          <el-button
+            type="warning"
+            @click="setWatermark('没有防御功能的局部水印', { color: '#e6a23c', defense: false })"
+          >
             创建无防御局部水印
           </el-button>
           <el-button type="danger" @click="clearWatermark">
@@ -34,7 +37,12 @@ const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark }
           <el-button type="primary" @click="setGlobalWatermark('全局水印', { color: '#409eff' })">
             创建全局水印
           </el-button>
-          <el-button type="warning" @click="setGlobalWatermark('没有防御功能的全局水印', { color: '#e6a23c', defense: false })">
+          <el-button
+            type="warning"
+            @click="
+              setGlobalWatermark('没有防御功能的全局水印', { color: '#e6a23c', defense: false })
+            "
+          >
             创建无防御全局水印
           </el-button>
           <el-button type="danger" @click="clearGlobalWatermark">

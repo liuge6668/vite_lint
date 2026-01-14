@@ -1,9 +1,7 @@
 <template>
   <div class="app-container">
     <h4>
-      <span>
-        三级及其以上路由缓存功能默认关闭，需要请前往此配置文件中打开：
-      </span>
+      <span> 三级及其以上路由缓存功能默认关闭，需要请前往此配置文件中打开： </span>
       <el-link
         type="primary"
         href="https://github.com/un-pany/v3-admin-vite/blob/main/src/router/config.ts"

@@ -12,7 +12,12 @@ interface Props {
   content?: boolean
 }
 
-const { element = "html", openTips = "全屏", exitTips = "退出全屏", content = false } = defineProps<Props>()
+const {
+  element = "html",
+  openTips = "全屏",
+  exitTips = "退出全屏",
+  content = false
+} = defineProps<Props>()
 
 const CONTENT_LARGE = "content-large"
 
@@ -57,7 +62,9 @@ const isContentLarge = ref<boolean>(false)
 
 const contentLargeTips = computed(() => (isContentLarge.value ? "内容区复原" : "内容区放大"))
 
-const contentLargeSvgName = computed(() => (isContentLarge.value ? "fullscreen-exit" : "fullscreen"))
+const contentLargeSvgName = computed(() =>
+  isContentLarge.value ? "fullscreen-exit" : "fullscreen"
+)
 
 function handleContentLargeClick() {
   isContentLarge.value = !isContentLarge.value
@@ -104,6 +111,7 @@ function handleContentFullClick() {
 <style lang="scss" scoped>
 .svg-icon {
   font-size: 20px;
+
   &:focus {
     outline: none;
   }

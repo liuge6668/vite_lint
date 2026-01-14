@@ -39,7 +39,9 @@ const menus = computed(() => cloneDeep(usePermissionStore().routes))
 const handleSearch = debounce(() => {
   const flatMenus = flatTree(menus.value)
   const _keywords = keyword.value.toLocaleLowerCase().trim()
-  result.value = flatMenus.filter(menu => keyword.value ? menu.meta?.title?.toLocaleLowerCase().includes(_keywords) : false)
+  result.value = flatMenus.filter(menu =>
+    keyword.value ? menu.meta?.title?.toLocaleLowerCase().includes(_keywords) : false
+  )
   // 默认选中搜索结果的第一项
   const length = result.value?.length
   activeRouteName.value = length > 0 ? result.value[0].name : undefined
@@ -159,7 +161,14 @@ function handleReleaseUpOrDown() {
     @keydown.enter="handleEnter"
     @keyup.up.down="handleReleaseUpOrDown"
   >
-    <el-input ref="inputRef" v-model="keyword" placeholder="搜索菜单" size="large" clearable @input="handleSearch">
+    <el-input
+      ref="inputRef"
+      v-model="keyword"
+      placeholder="搜索菜单"
+      size="large"
+      clearable
+      @input="handleSearch"
+    >
       <template #prefix>
         <SvgIcon name="search" class="svg-icon" />
       </template>
@@ -188,9 +197,11 @@ function handleReleaseUpOrDown() {
   .svg-icon {
     font-size: 18px;
   }
+
   .el-dialog__header {
     display: none;
   }
+
   .el-dialog__footer {
     border-top: 1px solid var(--el-border-color);
     padding-top: var(--el-dialog-padding-primary);
